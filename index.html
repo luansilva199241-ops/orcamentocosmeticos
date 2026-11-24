@@ -147,16 +147,16 @@ footer{padding:24px 0;color:var(--mute);font-size:14px}
   <p style="color:var(--mute);margin-top:-8px;margin-bottom:24px">Uma seleção de vídeos que já produzi, de beleza e estética a imóveis e empresas. Deslize para o lado e toque para assistir.</p>
   <div class="car">
     <div class="reels" id="reels" tabindex="0" aria-label="Carrossel de vídeos">
-      <figure class="reel"><video src="videos/v1.mp4" poster="videos/v1.jpg" controls playsinline preload="none"></video><figcaption>Campanha de Natal para clínica de estética</figcaption></figure>
-      <figure class="reel"><video src="videos/v2.mp4" poster="videos/v2.jpg" controls playsinline preload="none"></video><figcaption>Glow Up: conteúdo de beleza</figcaption></figure>
-      <figure class="reel"><video src="videos/v3.mp4" poster="videos/v3.jpg" controls playsinline preload="none"></video><figcaption>Vídeo educativo sobre procedimentos</figcaption></figure>
-      <figure class="reel"><video src="videos/v4.mp4" poster="videos/v4.jpg" controls playsinline preload="none"></video><figcaption>Black Friday de procedimentos faciais</figcaption></figure>
-      <figure class="reel"><video src="videos/v5.mp4" poster="videos/v5.jpg" controls playsinline preload="none"></video><figcaption>Tour de casa térrea mobiliada</figcaption></figure>
-      <figure class="reel"><video src="videos/v6.mp4" poster="videos/v6.jpg" controls playsinline preload="none"></video><figcaption>Apresentação de casa com corretora</figcaption></figure>
-      <figure class="reel"><video src="videos/v7.mp4" poster="videos/v7.jpg" controls playsinline preload="none"></video><figcaption>Tour com piscina e área externa</figcaption></figure>
-      <figure class="reel"><video src="videos/v8.mp4" poster="videos/v8.jpg" controls playsinline preload="none"></video><figcaption>Especialista explicando tema do setor</figcaption></figure>
-      <figure class="reel"><video src="videos/v9.mp4" poster="videos/v9.jpg" controls playsinline preload="none"></video><figcaption>Vídeo explicativo com motion design</figcaption></figure>
-      <figure class="reel"><video src="videos/v10.mp4" poster="videos/v10.jpg" controls playsinline preload="none"></video><figcaption>Conteúdo informativo com animação</figcaption></figure>
+      <figure class="reel"><video poster="videos/v1.jpg" data-alt-poster="v1.jpg" controls playsinline preload="metadata"><source src="videos/v1.mp4" type="video/mp4"><source src="v1.mp4" type="video/mp4"></video><figcaption>Campanha de Natal para clínica de estética</figcaption></figure>
+      <figure class="reel"><video poster="videos/v2.jpg" data-alt-poster="v2.jpg" controls playsinline preload="metadata"><source src="videos/v2.mp4" type="video/mp4"><source src="v2.mp4" type="video/mp4"></video><figcaption>Glow Up: conteúdo de beleza</figcaption></figure>
+      <figure class="reel"><video poster="videos/v3.jpg" data-alt-poster="v3.jpg" controls playsinline preload="metadata"><source src="videos/v3.mp4" type="video/mp4"><source src="v3.mp4" type="video/mp4"></video><figcaption>Vídeo educativo sobre procedimentos</figcaption></figure>
+      <figure class="reel"><video poster="videos/v4.jpg" data-alt-poster="v4.jpg" controls playsinline preload="metadata"><source src="videos/v4.mp4" type="video/mp4"><source src="v4.mp4" type="video/mp4"></video><figcaption>Black Friday de procedimentos faciais</figcaption></figure>
+      <figure class="reel"><video poster="videos/v5.jpg" data-alt-poster="v5.jpg" controls playsinline preload="metadata"><source src="videos/v5.mp4" type="video/mp4"><source src="v5.mp4" type="video/mp4"></video><figcaption>Tour de casa térrea mobiliada</figcaption></figure>
+      <figure class="reel"><video poster="videos/v6.jpg" data-alt-poster="v6.jpg" controls playsinline preload="metadata"><source src="videos/v6.mp4" type="video/mp4"><source src="v6.mp4" type="video/mp4"></video><figcaption>Apresentação de casa com corretora</figcaption></figure>
+      <figure class="reel"><video poster="videos/v7.jpg" data-alt-poster="v7.jpg" controls playsinline preload="metadata"><source src="videos/v7.mp4" type="video/mp4"><source src="v7.mp4" type="video/mp4"></video><figcaption>Tour com piscina e área externa</figcaption></figure>
+      <figure class="reel"><video poster="videos/v8.jpg" data-alt-poster="v8.jpg" controls playsinline preload="metadata"><source src="videos/v8.mp4" type="video/mp4"><source src="v8.mp4" type="video/mp4"></video><figcaption>Especialista explicando tema do setor</figcaption></figure>
+      <figure class="reel"><video poster="videos/v9.jpg" data-alt-poster="v9.jpg" controls playsinline preload="metadata"><source src="videos/v9.mp4" type="video/mp4"><source src="v9.mp4" type="video/mp4"></video><figcaption>Vídeo explicativo com motion design</figcaption></figure>
+      <figure class="reel"><video poster="videos/v10.jpg" data-alt-poster="v10.jpg" controls playsinline preload="metadata"><source src="videos/v10.mp4" type="video/mp4"><source src="v10.mp4" type="video/mp4"></video><figcaption>Conteúdo informativo com animação</figcaption></figure>
     </div>
     <div class="nav"><button type="button" id="prev" aria-label="Vídeos anteriores">‹</button><span id="pos">1 de 10</span><button type="button" id="next" aria-label="Próximos vídeos">›</button></div>
   </div>
@@ -204,6 +204,7 @@ footer{padding:24px 0;color:var(--mute);font-size:14px}
 <script>
 {const r=document.getElementById('reels'),vs=r.querySelectorAll('video'),its=r.querySelectorAll('.reel'),p=document.getElementById('prev'),n=document.getElementById('next'),pos=document.getElementById('pos');
 vs.forEach(v=>v.addEventListener('play',()=>vs.forEach(o=>{if(o!==v)o.pause()})));
+vs.forEach(v=>{const im=new Image();im.onerror=()=>{v.poster=v.dataset.altPoster};im.src=v.getAttribute('poster')});
 const step=()=>its[0].getBoundingClientRect().width+14;
 const upd=()=>{const i=Math.round(r.scrollLeft/step());pos.textContent=(i+1)+' de '+its.length;p.disabled=r.scrollLeft<4;n.disabled=r.scrollLeft+r.clientWidth>=r.scrollWidth-4};
 p.addEventListener('click',()=>r.scrollBy({left:-step(),behavior:'smooth'}));
